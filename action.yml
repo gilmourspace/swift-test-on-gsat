@@ -1,0 +1,16 @@
+name: Install guunits
+description: Installs guunits in standard paths on the system
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Build Tests
+      if: ${{ runner.os == 'Linux' }}
+      run: |
+        swift build --build-tests --destination /usr/local/armv7-unknown-linux-gnueabihf/destination.json
+        buildPath=`swift build --show-bin-path --destination /usr/local/armv7-unknown-linux-gnueabihf/destination.json`
+        scp $buildPath/${{ github.event.repository.name }}PackageTests.xctest runner@petalinux.local:~/
+        ssh runner@petalinux.local ~/{{ github.event.repository.name }}PackageTests.xctest
+        ssh runner@petalinux.local rm -r ~/{{ github.event.repository.name }}PackageTests.xctest
+      shell: bash
