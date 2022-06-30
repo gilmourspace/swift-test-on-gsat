@@ -1,5 +1,5 @@
-name: Install guunits
-description: Installs guunits in standard paths on the system
+name: Swift Test On GSat
+description: Execute swift package manager tests on a GSat.
 
 runs:
   using: 'composite'
