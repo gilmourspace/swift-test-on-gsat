@@ -12,5 +12,5 @@ runs:
         buildPath=`PKG_CONFIG_PATH="/usr/local/armv7-unknown-linux-gnueabihf/staging/lib/pkgconfig:$PKG_CONFIG_PATH" swift build --show-bin-path --destination /usr/local/armv7-unknown-linux-gnueabihf/destination.json`
         scp $buildPath/${{ github.event.repository.name }}PackageTests.xctest runner@petalinux.local:~/
         ssh runner@petalinux.local /home/runner/${{ github.event.repository.name }}PackageTests.xctest
-        ssh runner@petalinux.local rm -r /home/runner/${{ github.event.repository.name }}PackageTests.xctest
+        #ssh runner@petalinux.local rm -r /home/runner/${{ github.event.repository.name }}PackageTests.xctest
       shell: bash
